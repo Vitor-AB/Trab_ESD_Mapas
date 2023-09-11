@@ -1,7 +1,6 @@
 public class Main {
     public static void main(String[] args) {
         Mapa mapa = new Mapa();
-        Mapa map = new Mapa();
         mapa.put(5,8);
         mapa.put("a",70);
         mapa.put("a",50);
@@ -14,6 +13,9 @@ public class Main {
         System.out.println(mapa.remove("a"));
 
         System.out.println(mapa.isEmpty());
+
+
+        Mapa map = new Mapa();
         System.out.println(map.isEmpty());
 
 

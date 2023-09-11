@@ -6,14 +6,11 @@ O mapa deve guardar os elementos dentro de uma lista duplamente encadeada
 Não utilize as estruturas prontas da plataforma java.
 Inclua testes unitários
 */
-
-import java.util.LinkedList;
-
 public class Mapa {
 
     Object Chave;
     Object Valor;
-    LinkedList<Mapa> list = new LinkedList<Mapa>();
+    ListaDuplamenteEncadeada<Mapa> lista = new ListaDuplamenteEncadeada<>();
 
     public Mapa(Object chave, Object valor) {
         Chave = chave;
@@ -24,23 +21,22 @@ public class Mapa {
 
     public Object put(Object k,Object v){
         Object aux;
-        for (Mapa m: list) {
-            if(m.Chave == k){
-                aux = m.Valor;
-                m.Valor = v;
+        for (int i = 0; i < lista.tamanho(); i++) {
+            if (lista.recuperar(i).Chave == k){
+                aux = lista.recuperar(i).Valor;
+                lista.recuperar(i).Valor = v;
                 return aux;
             }
         }
-        list.add(new Mapa(k,v));
+        lista.inserir(new Mapa(k,v));
         return null;
-
     }
 
     public Object get(Object k){
-        if(!list.isEmpty()){
-            for (Mapa m: list) {
-                if(m.Chave == k){
-                    return m.Valor;
+        if (!lista.estaVazia()){
+            for (int i = 0; i < lista.tamanho(); i++) {
+                if (lista.recuperar(i).Chave == k){
+                    return lista.recuperar(i).Valor;
                 }
             }
         }
@@ -49,11 +45,11 @@ public class Mapa {
 
     public Object remove(Object k){
         Object aux;
-        if(!list.isEmpty()){
-            for (Mapa m: list) {
-                if(m.Chave == k){
-                    aux = m.Valor;
-                    list.remove(m);
+        if(!lista.estaVazia()){
+            for (int i = 0; i < lista.tamanho(); i++) {
+                if (lista.recuperar(i).Chave == k){
+                    aux = lista.recuperar(i).Valor;
+                    lista.remover(i);
                     return aux;
                 }
             }
@@ -62,15 +58,15 @@ public class Mapa {
     }
 
     public int size(){
-        return list.size();
+        return lista.tamanho();
     }
 
     public boolean isEmpty(){
-        return list.isEmpty();
+        return lista.estaVazia();
     }
 
     public void printList(){
-        System.out.println(list);
+        System.out.println(lista);
     }
 
 

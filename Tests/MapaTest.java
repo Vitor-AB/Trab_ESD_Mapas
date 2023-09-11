@@ -19,6 +19,20 @@ class MapaTest {
     }
 
     @Test
+    void putInserirChaveNulo() {
+        mapa.put(null,10);
+
+        assertEquals(10,mapa.get(null));
+    }
+
+    @Test
+    void putInserirValorNulo() {
+        mapa.put("nu",null);
+
+        assertNull(mapa.get("nu"));
+    }
+
+    @Test
     void substituirUmValorExistente() {
         mapa.put(5,10);
         mapa.put(10,50);
@@ -33,6 +47,8 @@ class MapaTest {
     void get() {
         mapa.put(5,10);
         mapa.put(10,50);
+
+        mapa.printList();
 
         assertEquals(10, mapa.get(5));
         assertEquals(50, mapa.get(10));
